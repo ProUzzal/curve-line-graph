@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      circle {
+        fill: transparent;
+      }
+      div circle:hover {
+        fill: rgb(0, 110, 255);
+        stroke-width: 5px;
+        stroke: white;
+        /* r: 1px; */
+        height: 20px;
+        width: 20px;
+        outline-width: 2px;
+        outline-color: rgb(0, 110, 255);
+        outline-style: solid;
+        border-radius: 50%;
+      }
+
+      #tooltip {
+        position: absolute;
+        display: none;
+        background-color: white;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.144);
+        font-weight: 500;
+        color: #1a1d3e;
+        padding: 7px 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        pointer-events: none;
+        z-index: 1;
+      }
+      #tooltip::after {
+        position: absolute;
+        content: "";
+        height: 10px;
+        width: 10px;
+        background-color: white;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 50%) rotate(45deg);
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <svg
+        width="500"
+        height="400"
+        viewBox="0 0 500 500"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g clip-path="url(#clip0_1_2)">
+          <path d="M0 0H496V285H0V0Z" fill="white" />
+          <path d="M0 262.5H496" stroke="#EAEAEA" stroke-dasharray="4 4" />
+          <path d="M0 222.5H496" stroke="#EAEAEA" stroke-dasharray="4 4" />
+          <path d="M0 182.5H496" stroke="#EAEAEA" stroke-dasharray="4 4" />
+          <path d="M0 142.5H496" stroke="#EAEAEA" stroke-dasharray="4 4" />
+          <path d="M0 102.5H496" stroke="#EAEAEA" stroke-dasharray="4 4" />
+          <path
+            d="M4.95808 244.375L2 262.5H496V114.375L486.534 121.25L484.168 116.25H474.702L468.786 133.75L458.137 125L451.037 131.875L440.98 124.375C436.72 125.375 431.317 134.375 429.147 138.75L412.582 112.5L405.483 111.25L391.284 139.375L381.818 150.625L375.31 144.375L374.719 139.375L371.76 133.75L365.253 150.625L347.504 168.125L340.996 160L335.672 159.375L333.897 204.375L325.614 206.25L319.698 202.5V196.875L307.866 190.625L304.908 196.875L298.992 193.75L294.259 244.375L280.651 231.25L269.411 232.5L261.72 250.625L252.254 161.875L246.929 174.375L239.238 170L232.731 185V191.25C228.471 192.25 225.434 198.75 224.448 201.875L217.348 205.625L210.249 193.75L207.291 178.75L196.05 207.5L188.359 193.75L184.81 196.875L168.244 181.875L156.412 204.375V211.875L149.313 226.875L142.805 135.625L135.114 203.75L131.564 208.75L128.606 206.875V195L124.465 180.625C124.938 188.625 117.957 196.875 114.407 200C114.407 202.5 110.857 216.875 109.083 223.75L100.208 213.125L92.5174 235L74.1772 185L68.2611 209.375L62.3449 215L55.2455 211.875L46.3713 193.125C44.0048 194.125 39.8635 216.042 38.0886 226.875L32.1725 237.5H23.8898L16.1988 244.375H4.95808Z"
+            fill="url(#paint0_linear_1_2)"
+          />
+          <path
+            d="M2 262.5L4.95808 244.375H16.1988L23.8898 237.5H32.1725L38.0886 226.875C39.8635 216.042 44.0048 194.125 46.3713 193.125L55.2455 211.875L62.3449 215L68.2611 209.375L74.1772 185L92.5174 235L100.208 213.125L109.083 223.75C110.857 216.875 114.407 202.5 114.407 200C117.957 196.875 124.938 188.625 124.465 180.625L128.606 195V206.875L132.5 210L135.114 203.75L142.805 135.625L149.313 226.875L156.412 211.875V204.375L168.244 181.875L184.81 196.875L188.359 193.75L196.05 207.5L207.291 178.75L210.249 193.75L217.348 205.625L224.448 201.875C225.434 198.75 228.471 192.25 232.731 191.25V185L239.238 170L246.929 174.375L252.254 161.875L261.72 250.625L269.411 232.5L280.651 231.25L294.259 244.375L298.992 193.75L304.908 196.875L307.866 190.625L319.698 196.875V202.5L325.614 206.25L333.897 204.375L335.672 159.375L340.996 160L347.504 168.125L365.253 150.625L371.76 133.75L374.719 139.375L375.31 144.375L381.818 150.625L391.284 139.375L405.483 111.25L412.582 112.5L429.147 138.75C431.317 134.375 436.72 125.375 440.98 124.375L451.037 131.875L458.137 125L468.786 133.75L474.702 116.25H484.168L486.534 121.25L496 114.375"
+            stroke="#3D7FF9"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="495.5" cy="114.5" r="3.5" fill="#3D7FF9" />
+          <circle cx="24.5" cy="237.5" r="3.5" fill="#3D7FF9" />
+          <circle cx="31.5" cy="237.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="37.5" cy="227.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="46.5" cy="193.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="55.5" cy="211.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="61.5" cy="214.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="67.5" cy="209.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="74.5" cy="185.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="92.5" cy="234.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="100.5" cy="212.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="108.5" cy="223.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="114.5" cy="200.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="124.5" cy="181.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="128.5" cy="193.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="128.5" cy="206.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="132.5" cy="209.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="135.5" cy="203.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="142.5" cy="135.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="168.5" cy="182.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="156.5" cy="203.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="156.5" cy="212.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="149.5" cy="226.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="16.5" cy="243.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="5.5" cy="244.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="188.5" cy="194.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="207.5" cy="179.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="196.5" cy="207.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="185.5" cy="197.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="211.5" cy="195.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="217.5" cy="205.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="224.5" cy="202.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="232.5" cy="191.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="232.5" cy="184.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="239.5" cy="170.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="252.5" cy="162.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="261.5" cy="250.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="269.5" cy="232.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="280.5" cy="231.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="294.5" cy="244.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="299.5" cy="194.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="304.5" cy="196.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="307.5" cy="190.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="319.5" cy="196.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="319.5" cy="202.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="333.5" cy="204.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="325.5" cy="206.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="335.5" cy="159.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="347.5" cy="167.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="365.5" cy="150.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="371.5" cy="133.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="375.5" cy="139.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="405.5" cy="111.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="391.5" cy="138.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="381.5" cy="150.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="375.5" cy="145.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="412.5" cy="112.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="429.5" cy="139.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="441.5" cy="124.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="451.5" cy="131.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="458.5" cy="125.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="468.5" cy="133.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="474.5" cy="116.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="484.5" cy="116.5" r="1.5" fill="#3D7FF9" />
+          <circle cx="486.5" cy="121.5" r="1.5" fill="#3D7FF9" />
+        </g>
+        <defs>
+          <linearGradient
+            id="paint0_linear_1_2"
+            x1="249"
+            y1="111.25"
+            x2="249"
+            y2="262.5"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#3D7FF9" stop-opacity="0.3" />
+            <stop offset="1" stop-color="#3D7FF9" stop-opacity="0" />
+          </linearGradient>
+          <clipPath id="clip0_1_2">
+            <rect width="497" height="285" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div id="tooltip"></div>
+
+    <script>
+      const circleValues = Array.from(
+        { length: 66 },
+        () => Math.floor(Math.random() * 100) + 1
+      );
+
+      // Get all circle elements
+      const circles = document.querySelectorAll("circle");
+
+      // Get the tooltip element
+      const tooltip = document.getElementById("tooltip");
+
+      // Add mouseover event listeners to each circle
+      circles.forEach((circle, index) => {
+        circle.addEventListener("mouseover", () => {
+          // Set the tooltip content based on the circle's value
+          tooltip.innerHTML = `${circleValues[index]}M`;
+          // Position the tooltip next to the hovered circle
+          const rect = circle.getBoundingClientRect();
+          console.log(rect);
+          tooltip.style.left = `calc(${rect.right - "30"}px)`;
+          // tooltip.style.transform = "translateX(-50%)";
+          tooltip.style.top = `calc(${rect.top - "40"}px)`;
+
+          // Display the tooltip
+          tooltip.style.display = "block";
+        });
+
+        // Add mouseout event listener to hide the tooltip on mouseout
+        circle.addEventListener("mouseout", () => {
+          tooltip.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>
